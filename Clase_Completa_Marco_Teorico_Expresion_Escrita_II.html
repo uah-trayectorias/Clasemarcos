@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Expresión Escrita II · Marco teórico — clase + taller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.js"></script>
+<style>
+
+:root{
+ --bg:#F5F1EA;--paper:#FFFDF9;--ink:#192332;--muted:#6C7480;--line:#DDD6CC;
+ --purple:#6B5BD2;--purpleSoft:#EEEAFB;--blue:#5B8FC8;--blueSoft:#EAF3FD;
+ --green:#6A9277;--greenSoft:#EDF6EF;--terr:#C66F4D;--terrSoft:#F9ECE6;
+ --gold:#B98A39;--goldSoft:#FBF1DA;--rose:#B46778;--roseSoft:#F8E9ED;
+ --shadow:0 24px 70px rgba(35,41,55,.09);--radius:28px
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif}
+button{font:inherit;cursor:pointer}h1,h2,h3,.serif{font-family:'DM Serif Display',serif;font-weight:400}
+.app{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:50;height:72px;padding:0 24px;display:grid;grid-template-columns:280px 1fr 280px;align-items:center;background:rgba(245,241,234,.93);backdrop-filter:blur(18px);border-bottom:1px solid rgba(221,214,204,.9)}
+.brand{display:flex;gap:11px;align-items:center}.brandmark{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,var(--purple),#8D7CE8);display:grid;place-items:center;color:white}.brand h1{font-family:'Manrope';font-size:15px;font-weight:800;margin:0}.brand small{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+.progressWrap{display:flex;align-items:center;justify-content:center;gap:10px}.track{width:min(470px,48vw);height:7px;background:#E3DED6;border-radius:999px;overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--purple),#9C8BE8);transition:.35s}.counter{font-size:11px;color:var(--muted);font-weight:800}.mode{justify-self:end;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:11px;font-weight:800;color:#5F6670;background:rgba(255,255,255,.72)}
+.stage{width:min(1180px,100%);margin:auto;padding:28px 22px 80px}.slide{display:none;animation:fade .25s ease}.slide.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hero{min-height:72vh;border-radius:34px;padding:52px;background:radial-gradient(circle at 84% 14%,rgba(255,255,255,.13),transparent 26%),linear-gradient(135deg,#4F477F 0%,#6B5BD2 48%,#7E76A8 100%);color:white;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center}
+.hero h2{font-size:58px;line-height:.99;margin:18px 0 16px;max-width:960px}.hero p{max-width:860px;font-size:18px;line-height:1.65;color:rgba(255,255,255,.92)}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;width:max-content;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.14)}
+.sectionHead{margin:8px 0 22px}.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--terr)}.sectionHead h2{font-size:42px;line-height:1.05;margin:8px 0}.sectionHead p{margin:0;max-width:900px;color:var(--muted);line-height:1.6}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}.soft{box-shadow:none}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.btn{border-radius:999px;padding:11px 16px;font-weight:800;font-size:12.5px;border:1px solid transparent;display:inline-flex;align-items:center;gap:7px;transition:.15s}.btn:active{transform:scale(.98)}.btn.primary{background:var(--purple);color:#fff}.btn.light{background:#fff;color:#5348A9}.btn.secondary{background:#fff;color:var(--ink);border-color:var(--line)}.btn.ghost{background:transparent;border-color:var(--line);color:var(--muted)}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.footerNav{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.callout{border:1px solid var(--line);border-radius:20px;padding:20px}.callout b{display:block;margin-bottom:6px}.callout span{font-size:13px;line-height:1.45;color:var(--muted)}.callout.purple{background:var(--purpleSoft)}.callout.blue{background:var(--blueSoft)}.callout.green{background:var(--greenSoft)}.callout.terr{background:var(--terrSoft)}.callout.gold{background:var(--goldSoft)}.callout.rose{background:var(--roseSoft)}
+.bigQ{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;font-family:'DM Serif Display',serif;font-size:30px;line-height:1.28}
+.reveal{display:none;margin-top:14px;border-radius:17px;padding:18px 20px;background:var(--purpleSoft);color:#50479A;line-height:1.55}.reveal.show{display:block}
+.case{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px}.caseTitle{font-family:'DM Serif Display';font-size:28px;line-height:1.3;margin-bottom:10px}.caseText{font-size:14px;line-height:1.7;color:#3E4857}
+.pollGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}.poll{border:1px solid var(--line);background:#fff;border-radius:18px;padding:17px;text-align:left;font-weight:700}.poll:hover{border-color:#BBB1EC}.poll.active{border-color:var(--purple);background:var(--purpleSoft)}
+.lensScene{display:grid;grid-template-columns:1fr 120px 1fr;gap:18px;align-items:center}.lens{border-radius:24px;padding:24px;min-height:280px}.lens h3{font-size:27px;margin:0 0 10px}.lens p,.lens li{font-size:13px;color:var(--muted);line-height:1.55}.lens ul{padding-left:18px}.lens.a{background:var(--goldSoft);border:1px solid #E5CF9E}.lens.b{background:var(--blueSoft);border:1px solid #C8DCEF}.centerPhen{text-align:center}.centerPhen .circle{width:110px;height:110px;margin:auto;border-radius:50%;background:linear-gradient(145deg,var(--purple),#9787E5);color:#fff;display:grid;place-items:center;padding:12px;font-size:12px;font-weight:800;box-shadow:var(--shadow)}
+.functionGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.function{border-radius:22px;padding:22px;border:1px solid var(--line);background:#fff}.function .ico{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;margin-bottom:12px}.function h3{font-family:'Manrope';font-weight:800;font-size:16px;margin:0 0 6px}.function p{font-size:12.5px;line-height:1.5;color:var(--muted)}
+.textCompare{display:grid;grid-template-columns:1fr 1fr;gap:16px}.textBox{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.textBox h3{font-size:24px;margin:0 0 10px}.textBox p{font-size:13px;line-height:1.65;color:#3E4857}.textBox small{display:block;margin-top:10px;color:var(--muted)}
+.quiz{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}.qcard,.sidecard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow)}.qmeta{display:flex;justify-content:space-between;gap:8px;margin-bottom:14px}.badge{font-size:10.5px;font-weight:800;border-radius:999px;padding:6px 9px;background:var(--purpleSoft);color:#574BAA}.qnum{font-size:10.5px;color:var(--muted);font-weight:800}.context{background:#F3F4F7;border-radius:14px;padding:13px 14px;font-size:12.5px;line-height:1.5;margin-bottom:14px}.qtext{font-family:'DM Serif Display';font-size:26px;line-height:1.35;margin:0 0 16px}.opts{display:grid;gap:9px}.opt{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:14px;background:#fff;padding:13px 14px;text-align:left;font-weight:700}.opt.sel{border-color:var(--purple);background:var(--purpleSoft)}.opt.correct{border-color:#9FC7AA;background:var(--greenSoft)}.opt.wrong{border-color:#D89EAA;background:var(--roseSoft)}.letter{width:24px;height:24px;border-radius:8px;background:#F1EFF6;display:grid;place-items:center;font-size:10px;font-weight:800;flex:0 0 auto}.feedback{display:none;margin-top:12px;padding:14px;border-radius:14px;font-size:12.5px;line-height:1.5}.feedback.show{display:block}.feedback.good{background:var(--greenSoft)}.feedback.bad{background:var(--roseSoft)}
+.sidecard h3{font-size:20px;margin:0 0 8px}.sidecard p{font-size:12.5px;color:var(--muted);line-height:1.55}
+.definition{padding:28px;border-radius:26px;background:linear-gradient(135deg,#1C2431,#364154);color:white}.definition h2{font-size:42px;margin:0 0 10px}.definition p{font-size:16px;line-height:1.65;max-width:850px;color:rgba(255,255,255,.84)}
+.route{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.routeStep{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;min-height:130px}.routeStep b{display:block;margin-bottom:6px}.routeStep span{font-size:11.5px;color:var(--muted);line-height:1.45}.routeStep .n{font-family:'DM Serif Display';font-size:28px;color:var(--purple)}
+.weakStrong{display:grid;grid-template-columns:1fr 1fr;gap:16px}.para{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.para h3{font-size:24px;margin:0 0 8px}.para p{font-size:13px;line-height:1.7;color:#3C4655}.tag{display:inline-flex;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:800;margin-bottom:10px}.tag.weak{background:var(--roseSoft);color:var(--rose)}.tag.strong{background:var(--greenSoft);color:var(--green)}
+@media(max-width:900px){.topbar{grid-template-columns:1fr}.progressWrap,.mode{display:none}.stage{padding:18px 14px 70px}.hero{padding:30px;min-height:65vh}.hero h2{font-size:42px}.grid2,.grid3,.pollGrid,.lensScene,.functionGrid,.textCompare,.quiz,.weakStrong,.route{grid-template-columns:1fr}.centerPhen{order:-1}.routeStep{min-height:auto}}
+
+.cycle{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}.cycleCard{border:1px solid var(--line);background:#fff;border-radius:20px;padding:18px}.cycleCard .n{font-family:'DM Serif Display';font-size:32px;color:var(--terr)}.cycleCard h3{font-family:'Manrope';font-weight:800;font-size:15px;margin:5px 0}.cycleCard p{font-size:12px;color:var(--muted);line-height:1.45;margin:0}
+.obj{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;font-family:'DM Serif Display';font-size:28px;line-height:1.45}.obj mark{padding:2px 6px;border-radius:7px}.a{background:var(--purpleSoft);color:#5349AA}.b{background:var(--blueSoft);color:#3E72AC}.rel{background:var(--goldSoft);color:#8A6B2F}
+.bigQ{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;font-family:'DM Serif Display';font-size:30px;line-height:1.28}
+.modelGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.modelBox{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.modelBox h3{font-size:26px;margin:0 0 10px}.modelBox p,.modelBox li{font-size:13px;line-height:1.6;color:#3F4855}.modelBox ul{padding-left:20px}
+.tip{margin-top:14px;padding:14px 16px;border-radius:16px;background:var(--greenSoft);border:1px solid #D3E6D8;font-size:12.5px;line-height:1.5}
+.workSlide{min-height:66vh;display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}.workMain{background:linear-gradient(135deg,#1C2431,#354154);color:#fff;border-radius:30px;padding:36px;display:flex;flex-direction:column;justify-content:center}.workMain h2{font-size:46px;line-height:1.03;margin:8px 0 14px}.workMain p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.82)}.workSteps{display:grid;gap:10px;margin-top:18px}.workStep{display:flex;gap:10px;align-items:flex-start}.workStep .n{width:28px;height:28px;border-radius:9px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:11px;font-weight:800;flex:0 0 auto}.workStep span{font-size:13px;line-height:1.5}
+.timerPanel{background:#fff;border:1px solid var(--line);border-radius:30px;padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow)}.timerLabel{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}.timerTime{font-family:'DM Serif Display';font-size:72px;line-height:1;margin:12px 0}.timerBarTrack{width:100%;height:10px;background:#ECE7DF;border-radius:999px;overflow:hidden}.timerBar{height:100%;width:100%;background:linear-gradient(90deg,var(--terr),#DE9879);transition:width .25s linear}.timerButtons{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.discussGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.discussBox{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.discussBox h3{font-size:25px;margin:0 0 10px}.discussBox p{font-size:13px;color:var(--muted);line-height:1.6}.prompt{padding:14px 0;border-top:1px solid var(--line);font-size:13px;line-height:1.5}.prompt:first-of-type{border-top:0}
+.sourceCompare{display:grid;grid-template-columns:1fr 1fr;gap:16px}.source{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.source h3{font-size:24px;margin:0 0 10px}.source p{font-size:13px;line-height:1.65;color:#3D4653}.source small{display:block;margin-top:10px;color:var(--muted)}
+.table{border:1px solid var(--line);border-radius:18px;overflow:hidden}.tr{display:grid;grid-template-columns:1fr 1.2fr 1.2fr}.tr>div{padding:13px 14px;border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.45}.tr>div+div{border-left:1px solid var(--line)}.tr.head{background:#F1EEE8;font-weight:800}.tr:last-child>div{border-bottom:0}
+.arch{display:grid;grid-template-columns:1fr 60px 1fr 60px 1fr;gap:10px;align-items:center}.archBox{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.archBox h3{font-family:'Manrope';font-size:15px;font-weight:800;margin:0 0 6px}.archBox p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}.arr{text-align:center;font-size:24px;color:var(--terr)}
+.checkGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.check{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.check b{display:block;margin-bottom:5px}.check span{font-size:11.5px;color:var(--muted);line-height:1.45}
+@media(max-width:900px){.topbar{grid-template-columns:1fr}.progressWrap,.mode{display:none}.stage{padding:18px 14px 70px}.hero{padding:30px;min-height:65vh}.hero h2{font-size:42px}.cycle,.grid2,.grid3,.modelGrid,.workSlide,.discussGrid,.sourceCompare,.arch,.checkGrid{grid-template-columns:1fr}.arr{transform:rotate(90deg)}.timerTime{font-size:60px}.tr{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="brand">
+    <div class="brandmark"><i data-lucide="glasses"></i></div>
+    <div><h1>Expresión Escrita II</h1><small>Marco teórico · clase + taller guiado</small></div>
+  </div>
+  <div class="progressWrap"><div class="track"><i id="bar"></i></div><span class="counter" id="counter">1 / 33</span></div>
+  <div class="mode">Sesión completa · Educación Parvularia</div>
+</header>
+<main class="stage">
+<section class="slide active">
+  <div class="hero">
+    <span class="eyebrow"><i data-lucide="glasses"></i> Nueva etapa</span>
+    <h2>Un marco teórico no solo reúne información.<br>Construye una manera de mirar el problema.</h2>
+    <p>Hoy vamos a descubrir cómo los conceptos, autores y textos que elegimos cambian lo que podemos observar, preguntar e interpretar en una investigación.</p>
+    <div class="actions"><button class="btn light" onclick="next()">Comenzar <i data-lucide="arrow-right"></i></button></div>
+  </div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Partimos desde una situación</div><h2>Un mismo problema puede explicarse de maneras distintas</h2><p>No partimos con una definición de marco teórico. Partimos intentando comprender un fenómeno.</p></div>
+  <div class="case">
+    <div class="caseTitle">En un jardín infantil, algunas familias participan poco en las actividades organizadas por el establecimiento.</div>
+    <div class="caseText">Antes de buscar textos o conceptos, pensemos: ¿por qué podría estar ocurriendo esto?</div>
+  </div>
+  <div class="pollGrid" id="poll1">
+    <button class="poll" onclick="pickPoll(this)">Porque las familias no tienen suficiente interés.</button>
+    <button class="poll" onclick="pickPoll(this)">Porque tienen dificultades de tiempo y organización.</button>
+    <button class="poll" onclick="pickPoll(this)">Porque las formas de participación propuestas quizá no consideran cómo pueden participar distintas familias.</button>
+    <button class="poll" onclick="pickPoll(this)">Puede haber varias explicaciones al mismo tiempo.</button>
+  </div>
+  <div class="bigQ">¿Qué cambia cuando explicamos el mismo problema de maneras diferentes?</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Comparemos miradas →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Dos maneras de mirar</div><h2>¿Estas dos explicaciones dicen lo mismo?</h2></div>
+  <div class="lensScene">
+    <div class="lens a">
+      <h3>Mirada A</h3>
+      <p>La participación familiar depende principalmente del compromiso y la disposición de madres, padres o cuidadores.</p>
+      <ul><li>Interés</li><li>Asistencia</li><li>Compromiso individual</li></ul>
+    </div>
+    <div class="centerPhen"><div class="circle">Baja participación familiar</div></div>
+    <div class="lens b">
+      <h3>Mirada B</h3>
+      <p>La participación familiar se construye en la relación entre familias e institución y también depende de las oportunidades que esta ofrece.</p>
+      <ul><li>Comunicación</li><li>Oportunidades de participar</li><li>Barreras institucionales</li></ul>
+    </div>
+  </div>
+  <div class="actions"><button class="btn secondary" onclick="toggle('rev2')">¿Qué cambiaría en la investigación?</button></div>
+  <div id="rev2" class="reveal"><b>Mucho.</b> Desde la mirada A tenderíamos a observar motivación, asistencia y compromiso. Desde la mirada B miraríamos también comunicación, condiciones de participación, barreras y prácticas institucionales.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">La idea de lente →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Concepto clave</div><h2>Un concepto funciona como una lente</h2><p>La lente no cambia el fenómeno, pero sí cambia qué aspectos logramos ver.</p></div>
+  <div class="lensScene">
+    <div class="lens a">
+      <h3>Participación = asistencia</h3>
+      <ul><li>¿Vino a la reunión?</li><li>¿Asistió a la actividad?</li><li>¿Cuántas veces participó?</li></ul>
+    </div>
+    <div class="centerPhen"><div class="circle">Participación familiar</div></div>
+    <div class="lens b">
+      <h3>Participación = colaboración</h3>
+      <ul><li>¿Puede comunicarse?</li><li>¿Puede aportar?</li><li>¿Participa en decisiones?</li><li>¿Hay distintas formas de colaborar?</li></ul>
+    </div>
+  </div>
+  <div class="bigQ" style="font-size:24px">La manera en que definimos un concepto cambia lo que podemos observar y preguntar.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Entonces, ¿qué hace el marco teórico? →</button></div>
+</section><section class="slide">
+  <div class="definition">
+    <div class="kicker" style="color:#D7D0FF">Marco teórico</div>
+    <h2>Nos entrega conceptos y explicaciones para mirar nuestro problema.</h2>
+    <p>No es un diccionario ni una colección de citas. Es la construcción de una mirada fundamentada que nos permite nombrar, interpretar y relacionar aspectos de nuestro objeto de investigación.</p>
+  </div>
+  <div class="functionGrid" style="margin-top:16px">
+    <div class="function"><div class="ico" style="background:var(--purpleSoft);color:var(--purple)"><i data-lucide="tag"></i></div><h3>Nombrar</h3><p>Reconocer y definir fenómenos que de otro modo podrían parecer obvios.</p></div>
+    <div class="function"><div class="ico" style="background:var(--blueSoft);color:var(--blue)"><i data-lucide="scan-eye"></i></div><h3>Interpretar</h3><p>Construir explicaciones sobre lo que observamos.</p></div>
+    <div class="function"><div class="ico" style="background:var(--greenSoft);color:var(--green)"><i data-lucide="git-merge"></i></div><h3>Relacionar</h3><p>Comprender cómo distintos fenómenos pueden vincularse entre sí.</p></div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Otro problema →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Problematizamos de nuevo</div><h2>Hay palabras que parecen evidentes… hasta que intentamos definirlas</h2></div>
+  <div class="case"><div class="caseTitle">Un niño de 4 años utiliza pantallas durante varias horas al día.</div><div class="caseText">Antes de decir que eso es “bueno” o “malo”, ¿qué necesitaríamos saber?</div></div>
+  <div class="pollGrid" id="poll2">
+    <button class="poll" onclick="pickPoll(this)">Qué hace con la pantalla.</button>
+    <button class="poll" onclick="pickPoll(this)">Durante cuánto tiempo y en qué momentos.</button>
+    <button class="poll" onclick="pickPoll(this)">Con quién la utiliza y qué contenido ve.</button>
+    <button class="poll" onclick="pickPoll(this)">Qué entendemos exactamente por “uso de pantallas”.</button>
+  </div>
+  <div class="actions"><button class="btn primary" onclick="toggle('rev3')">Revelar idea</button></div>
+  <div id="rev3" class="reveal">Incluso palabras aparentemente simples necesitan ser conceptualizadas. “Uso de pantallas” puede significar experiencias muy distintas. Lo mismo ocurre con participación, juego, inclusión, aprendizaje, autonomía o vínculo.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Quiz breve →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Quiz 1</div><h2>¿Por qué necesitamos definir conceptos?</h2></div>
+  <div id="quizA"></div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Ahora entran los textos →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Elegir una fuente también es decidir</div><h2>Los textos no solo entregan información</h2><p>También proponen maneras de entender los conceptos.</p></div>
+  <div class="textCompare">
+    <div class="textBox">
+      <h3>Texto A</h3>
+      <p>La participación familiar se entiende principalmente como la asistencia de madres, padres o cuidadores a actividades convocadas por el establecimiento.</p>
+      <small>Mirada centrada en presencia y asistencia.</small>
+    </div>
+    <div class="textBox">
+      <h3>Texto B</h3>
+      <p>La participación familiar se entiende como una relación de colaboración en la que las familias pueden comunicarse, aportar, decidir y participar de diferentes maneras.</p>
+      <small>Mirada centrada en colaboración y relación.</small>
+    </div>
+  </div>
+  <div class="bigQ">Si un grupo usa principalmente el Texto A, ¿qué tenderá a observar? ¿Y si trabaja desde el Texto B?</div>
+  <div class="actions"><button class="btn secondary" onclick="toggle('rev4')">Mostrar idea clave</button></div>
+  <div id="rev4" class="reveal"><b>Los textos no son neutros.</b> Al seleccionar fuentes también seleccionamos formas de comprender el fenómeno.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Nombrémoslo →</button></div>
+</section><section class="slide">
+  <div class="definition">
+    <div class="kicker" style="color:#D7D0FF">Una idea importante</div>
+    <h2>Eso empieza a construir una posición teórica</h2>
+    <p>La posición teórica es la manera de comprender nuestro problema que vamos construyendo a partir de los conceptos, autores y estudios con los que dialogamos.</p>
+  </div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="callout rose"><b>No significa</b><span>“Elegir un bando” o buscar al autor que “tiene la razón”.</span></div>
+    <div class="callout green"><b>Significa</b><span>Decidir qué ideas nos ayudan mejor a comprender nuestro objeto de investigación y fundamentar esa decisión.</span></div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">¿Cambiaría la investigación? →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Quiz 2</div><h2>Si cambia la definición, ¿cambia la investigación?</h2></div>
+  <div id="quizB"></div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Volvamos a sus objetivos →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Conexión con sus investigaciones</div><h2>Sus objetivos ya contienen palabras que necesitan una mirada teórica</h2><p>Palabras que parecen claras pueden tener distintas maneras de entenderse.</p></div>
+  <div class="grid3">
+    <div class="callout purple"><b>Participación familiar</b><span>¿Asistencia? ¿Colaboración? ¿Toma de decisiones?</span></div>
+    <div class="callout blue"><b>Desarrollo socioemocional</b><span>¿Qué dimensiones incluye? ¿Desde qué enfoque se entiende?</span></div>
+    <div class="callout green"><b>Experiencias directas</b><span>¿Qué las caracteriza? ¿Qué las diferencia de otras experiencias?</span></div>
+    <div class="callout gold"><b>Inclusión</b><span>¿Integración? ¿Participación? ¿Eliminación de barreras?</span></div>
+    <div class="callout terr"><b>Adaptación</b><span>¿Proceso individual? ¿Relacional? ¿Institucional?</span></div>
+    <div class="callout rose"><b>Aprendizaje</b><span>¿Qué entendemos por aprender en este problema?</span></div>
+  </div>
+  <div class="bigQ" style="font-size:24px">¿Cuál de estas palabras podría tener más de una manera de entenderse? <b>Probablemente todas.</b></div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Autores que discrepan →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Los autores no siempre dicen lo mismo</div><h2>Un marco teórico también implica comparar y tomar posición</h2></div>
+  <div class="textCompare">
+    <div class="textBox"><h3>Autora A</h3><p>La familia es principalmente una colaboradora del trabajo pedagógico desarrollado por el establecimiento.</p></div>
+    <div class="textBox"><h3>Autor B</h3><p>Familia e institución son agentes educativos que construyen conjuntamente el proceso educativo.</p></div>
+  </div>
+  <div class="bigQ">¿Estas ideas son iguales? ¿Son compatibles? ¿Qué diferencia importante encuentran?</div>
+  <div class="actions"><button class="btn secondary" onclick="toggle('rev5')">¿Qué hacemos con estas diferencias?</button></div>
+  <div id="rev5" class="reveal">No elegimos simplemente “quién tiene razón”. <b>Comparamos, explicamos los matices y construimos una posición fundamentada</b> para nuestra propia investigación.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Marco teórico o diccionario →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Quiz 3</div><h2>¿Cuál se acerca más a un marco teórico?</h2></div>
+  <div id="quizC"></div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Y en la escritura… →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Escribir con fuentes</div><h2>Usar autores no es ponerlos uno detrás de otro</h2><p>El texto académico también organiza, relaciona e interpreta las fuentes.</p></div>
+  <div class="weakStrong">
+    <div class="para">
+      <span class="tag weak">Versión débil</span>
+      <h3>Autores en fila</h3>
+      <p>Pérez (2021) señala que la participación familiar es importante. González (2022) indica que las familias participan de distintas maneras. Soto (2020) señala que la familia es fundamental.</p>
+    </div>
+    <div class="para">
+      <span class="tag strong">Versión elaborada</span>
+      <h3>Una idea construida</h3>
+      <p>La participación familiar no se limita a la asistencia a actividades convocadas por el establecimiento. Diversos trabajos la entienden como una relación de colaboración que puede expresarse mediante comunicación, participación en decisiones y acompañamiento de experiencias educativas.</p>
+    </div>
+  </div>
+  <div class="bigQ" style="font-size:24px">¿Qué hace la segunda versión que la primera no hace?</div>
+  <div class="actions"><button class="btn secondary" onclick="toggle('rev6')">Revelar</button></div>
+  <div id="rev6" class="reveal">La segunda versión <b>organiza las fuentes alrededor de una idea</b>. El autor del texto no desaparece: decide qué relacionar, qué comparar y qué interpretación construir.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Ruta completa →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">La ruta del marco teórico</div><h2>Ahora sí podemos ordenar el proceso</h2></div>
+  <div class="route">
+    <div class="routeStep"><div class="n">1</div><b>Objetivos</b><span>¿Qué queremos comprender?</span></div>
+    <div class="routeStep"><div class="n">2</div><b>Conceptos</b><span>¿Qué palabras centrales necesitan ser definidas?</span></div>
+    <div class="routeStep"><div class="n">3</div><b>Perspectivas</b><span>¿Qué maneras de entender esos conceptos existen?</span></div>
+    <div class="routeStep"><div class="n">4</div><b>Fuentes</b><span>¿Qué autores y estudios ayudan a desarrollar esas perspectivas?</span></div>
+    <div class="routeStep"><div class="n">5</div><b>Relaciones</b><span>¿Cómo dialogan o se tensionan esas ideas?</span></div>
+    <div class="routeStep"><div class="n">6</div><b>Posición teórica</b><span>¿Cómo comprenderemos nuestro problema?</span></div>
+  </div>
+  <div class="bigQ" style="font-size:23px">Solo después de construir esta mirada tiene sentido organizar el marco teórico en apartados y comenzar a escribirlo.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Cierre →</button></div>
+</section>
+<section class="slide">
+  <div class="hero" style="background:linear-gradient(135deg,#754631,#C66F4D 48%,#D88F70 100%)">
+    <span class="eyebrow"><i data-lucide="hammer"></i> Bloque 2 · Taller guiado</span>
+    <h2>Ahora dejamos de mirar ejemplos.<br>Trabajamos con sus investigaciones.</h2>
+    <p>La dinámica cambia: yo modelo una parte, ustedes avanzan durante unos minutos, ponemos en común y seguimos construyendo.</p>
+    <div class="actions"><button class="btn light" onclick="next()">Comenzar taller <i data-lucide="arrow-right"></i></button></div>
+  </div>
+</section>
+<section class="slide">
+  <div class="sectionHead"><div class="kicker">Cómo trabajaremos</div><h2>El taller avanza por ciclos breves</h2><p>No construiremos todo de una vez. Cada ciclo agrega una pieza nueva.</p></div>
+  <div class="cycle">
+    <div class="cycleCard"><div class="n">1</div><h3>Yo modelo</h3><p>Vemos cómo se hace con un caso concreto.</p></div>
+    <div class="cycleCard"><div class="n">2</div><h3>Ustedes trabajan</h3><p>Aplican el mismo razonamiento a sus objetivos.</p></div>
+    <div class="cycleCard"><div class="n">3</div><h3>Ponemos en común</h3><p>Compartimos decisiones y dudas.</p></div>
+    <div class="cycleCard"><div class="n">4</div><h3>Ajustamos</h3><p>Retomamos lo discutido y avanzamos.</p></div>
+  </div>
+  <div class="bigQ" style="font-size:24px">Producto del bloque: una primera arquitectura del marco teórico, todavía abierta a ajustes.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Primer modelado →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Modelado 1</div><h2>¿Qué conceptos de nuestro objetivo necesitan una mirada teórica?</h2></div>
+  <div class="obj">Analizar la relación entre <mark class="a">participación familiar</mark> y <mark class="b">adaptación al jardín infantil</mark>.</div>
+  <div class="modelGrid" style="margin-top:16px">
+    <div class="modelBox">
+      <h3>No buscamos “palabras importantes”</h3>
+      <p>Buscamos conceptos cuyo significado cambia la manera en que comprendemos el problema.</p>
+      <ul><li>Participación familiar</li><li>Adaptación al jardín infantil</li><li>Relación entre ambas</li></ul>
+    </div>
+    <div class="modelBox">
+      <h3>¿Cómo sé que es un concepto central?</h3>
+      <ul><li>Si lo entiendo de otra manera, ¿cambiaría la investigación?</li><li>¿Necesito autores para comprenderlo?</li><li>¿Aparece directamente en mis objetivos?</li></ul>
+    </div>
+  </div>
+  <div class="tip"><b>Clave:</b> no se trata de marcar todas las palabras del objetivo. Necesitamos seleccionar los conceptos que realmente sostienen la investigación.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Ahora ustedes · 10 min →</button></div>
+</section><section class="slide">
+  <div class="workSlide">
+    <div class="workMain">
+      <span class="eyebrow">Trabajo 1</span>
+      <h2>Identifiquen 3 conceptos centrales</h2>
+      <p>Abran los objetivos que ya me enviaron y trabajen únicamente con ellos.</p>
+      <div class="workSteps">
+        <div class="workStep"><div class="n">1</div><span>Lean nuevamente el objetivo general y los específicos.</span></div>
+        <div class="workStep"><div class="n">2</div><span>Subrayen las palabras que podrían entenderse de distintas maneras.</span></div>
+        <div class="workStep"><div class="n">3</div><span>Elijan solo <b>3 conceptos centrales</b>.</span></div>
+        <div class="workStep"><div class="n">4</div><span>Prepárense para explicar por qué los eligieron.</span></div>
+      </div>
+    </div>
+    <div class="timerPanel">
+      <div class="timerLabel">Tiempo de trabajo</div>
+      <div class="timerTime" id="t1">10:00</div>
+      <div class="timerBarTrack"><div class="timerBar" id="tb1"></div></div>
+      <div class="timerButtons"><button class="btn primary" onclick="startTimer('t1','tb1',600)">Iniciar</button><button class="btn secondary" onclick="pauseTimer('t1')">Pausar</button><button class="btn ghost" onclick="resetTimer('t1','tb1',600)">Reiniciar</button></div>
+    </div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Puesta en común →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Puesta en común 1</div><h2>¿Qué conceptos eligieron y por qué?</h2><p>La discusión sirve para afinar qué es realmente central y qué podría ser solo contexto.</p></div>
+  <div class="discussGrid">
+    <div class="discussBox"><h3>Escuchemos 3–4 grupos</h3><div class="prompt">¿Cuáles son sus tres conceptos?</div><div class="prompt">¿Qué objetivo les hizo elegirlos?</div><div class="prompt">¿Cuál les costó más decidir?</div></div>
+    <div class="discussBox"><h3>Mientras escuchamos, revisamos</h3><div class="prompt">¿Hay un concepto demasiado amplio?</div><div class="prompt">¿Hay uno que parece importante, pero no aparece realmente en los objetivos?</div><div class="prompt">¿Falta algún concepto sin el cual el problema no se entendería?</div></div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Modelado 2 →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Modelado 2</div><h2>Un concepto no se desarrolla copiando una definición</h2><p>Necesitamos convertirlo en preguntas que guíen nuestra lectura y búsqueda.</p></div>
+  <div class="grid2">
+    <div class="modelBox">
+      <h3>Concepto: participación familiar</h3>
+      <ul>
+        <li>¿Qué se entiende por participación familiar?</li>
+        <li>¿Qué formas puede adoptar?</li>
+        <li>¿Qué dimensiones incluye?</li>
+        <li>¿Existen distintas maneras de comprenderla?</li>
+      </ul>
+    </div>
+    <div class="modelBox">
+      <h3>Preguntas que no ayudan mucho</h3>
+      <ul>
+        <li>¿Es importante la participación familiar?</li>
+        <li>¿Qué dice internet sobre las familias?</li>
+        <li>¿Qué cosas hacen las familias?</li>
+      </ul>
+      <p>Son demasiado generales o no muestran qué necesitamos comprender teóricamente.</p>
+    </div>
+  </div>
+  <div class="tip"><b>Clave:</b> las preguntas teóricas convierten un concepto amplio en aspectos concretos que podemos buscar, comparar y explicar.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Ahora ustedes · 10 min →</button></div>
+</section><section class="slide">
+  <div class="workSlide">
+    <div class="workMain">
+      <span class="eyebrow">Trabajo 2</span>
+      <h2>Problematiza uno de tus conceptos</h2>
+      <p>Elijan uno de los tres conceptos que identificaron.</p>
+      <div class="workSteps">
+        <div class="workStep"><div class="n">1</div><span>Escriban entre <b>3 y 4 preguntas teóricas</b>.</span></div>
+        <div class="workStep"><div class="n">2</div><span>Eviten preguntas que se respondan con sí/no.</span></div>
+        <div class="workStep"><div class="n">3</div><span>Pregunten por significado, características, dimensiones, perspectivas o relaciones.</span></div>
+        <div class="workStep"><div class="n">4</div><span>Elijan una pregunta para compartir con el curso.</span></div>
+      </div>
+    </div>
+    <div class="timerPanel">
+      <div class="timerLabel">Tiempo de trabajo</div>
+      <div class="timerTime" id="t2">10:00</div>
+      <div class="timerBarTrack"><div class="timerBar" id="tb2"></div></div>
+      <div class="timerButtons"><button class="btn primary" onclick="startTimer('t2','tb2',600)">Iniciar</button><button class="btn secondary" onclick="pauseTimer('t2')">Pausar</button><button class="btn ghost" onclick="resetTimer('t2','tb2',600)">Reiniciar</button></div>
+    </div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Puesta en común →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Puesta en común 2</div><h2>¿Qué preguntas construyeron?</h2></div>
+  <div class="discussGrid">
+    <div class="discussBox"><h3>Compartimos una pregunta por grupo</h3><div class="prompt">¿Qué concepto están trabajando?</div><div class="prompt">¿Qué quieren comprender de él?</div><div class="prompt">¿Por qué esa pregunta sería útil para su investigación?</div></div>
+    <div class="discussBox"><h3>La revisamos entre todos</h3><div class="prompt">¿Es suficientemente específica?</div><div class="prompt">¿Ayuda a comprender el concepto?</div><div class="prompt">¿Podríamos buscar fuentes para responderla?</div></div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Modelado 3 →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Modelado 3</div><h2>Ahora sí buscamos fuentes, pero con una pregunta en mente</h2></div>
+  <div class="grid2">
+    <div class="modelBox">
+      <h3>Búsqueda demasiado abierta</h3>
+      <p class="serif" style="font-size:22px">“participación familiar marco teórico PDF”</p>
+      <p>Puede devolver muchas cosas, pero no sabemos qué estamos buscando exactamente.</p>
+    </div>
+    <div class="modelBox">
+      <h3>Búsqueda orientada</h3>
+      <ul><li>definición participación familiar</li><li>formas de participación familiar</li><li>participación familiar Educación Parvularia</li><li>familia–institución educativa colaboración</li></ul>
+    </div>
+  </div>
+  <div class="bigQ" style="font-size:24px">No buscamos “información sobre el tema”. Buscamos textos que nos ayuden a responder preguntas concretas.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Ahora ustedes · 10 min →</button></div>
+</section><section class="slide">
+  <div class="workSlide">
+    <div class="workMain">
+      <span class="eyebrow">Trabajo 3</span>
+      <h2>Diseñen su estrategia de búsqueda</h2>
+      <p>No necesitan encontrar todas las fuentes todavía. Primero definan qué buscarían y para qué.</p>
+      <div class="workSteps">
+        <div class="workStep"><div class="n">1</div><span>Elijan 2 preguntas teóricas.</span></div>
+        <div class="workStep"><div class="n">2</div><span>Escriban 2–3 combinaciones de palabras clave por pregunta.</span></div>
+        <div class="workStep"><div class="n">3</div><span>Definan qué esperan obtener de esas fuentes: definir, describir, comparar o relacionar.</span></div>
+      </div>
+    </div>
+    <div class="timerPanel">
+      <div class="timerLabel">Tiempo de trabajo</div>
+      <div class="timerTime" id="t3">10:00</div>
+      <div class="timerBarTrack"><div class="timerBar" id="tb3"></div></div>
+      <div class="timerButtons"><button class="btn primary" onclick="startTimer('t3','tb3',600)">Iniciar</button><button class="btn secondary" onclick="pauseTimer('t3')">Pausar</button><button class="btn ghost" onclick="resetTimer('t3','tb3',600)">Reiniciar</button></div>
+    </div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Puesta en común →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Puesta en común 3</div><h2>¿Qué buscarían y para qué?</h2></div>
+  <div class="table">
+    <div class="tr head"><div>Pregunta</div><div>Palabras clave</div><div>¿Qué necesito obtener?</div></div>
+    <div class="tr"><div>¿Qué se entiende por participación familiar?</div><div>participación familiar · definición · educación inicial</div><div>Comparar definiciones y reconocer dimensiones.</div></div>
+    <div class="tr"><div>¿Qué formas puede adoptar?</div><div>formas participación familiar · colaboración familia escuela</div><div>Identificar tipos o modalidades de participación.</div></div>
+  </div>
+  <div class="bigQ" style="font-size:23px">¿Sus búsquedas están guiadas por sus preguntas o todavía son demasiado amplias?</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Modelado 4 →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Modelado 4</div><h2>No basta encontrar fuentes: necesitamos reconocer cómo entienden el concepto</h2></div>
+  <div class="sourceCompare">
+    <div class="source"><h3>Fuente A</h3><p>Entiende la participación principalmente como asistencia y colaboración con actividades propuestas por el establecimiento.</p><small>Permite mirar presencia, asistencia y apoyo.</small></div>
+    <div class="source"><h3>Fuente B</h3><p>Entiende la participación como una relación de colaboración donde las familias también pueden comunicar, decidir y proponer.</p><small>Permite mirar comunicación, decisión, barreras y poder de participación.</small></div>
+  </div>
+  <div class="bigQ">¿Qué cambia entre estas dos perspectivas? ¿Qué podría mirar una que la otra deja menos visible?</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Ahora ustedes · 10 min →</button></div>
+</section><section class="slide">
+  <div class="workSlide">
+    <div class="workMain">
+      <span class="eyebrow">Trabajo 4</span>
+      <h2>Anticipen posibles perspectivas</h2>
+      <p>Trabajen con uno de sus conceptos centrales.</p>
+      <div class="workSteps">
+        <div class="workStep"><div class="n">1</div><span>Imaginen dos maneras distintas de entender ese concepto.</span></div>
+        <div class="workStep"><div class="n">2</div><span>¿Qué permitiría observar cada una?</span></div>
+        <div class="workStep"><div class="n">3</div><span>¿Qué preguntas diferentes producirían?</span></div>
+        <div class="workStep"><div class="n">4</div><span>No tienen que “elegir la correcta” todavía.</span></div>
+      </div>
+    </div>
+    <div class="timerPanel">
+      <div class="timerLabel">Tiempo de trabajo</div>
+      <div class="timerTime" id="t4">10:00</div>
+      <div class="timerBarTrack"><div class="timerBar" id="tb4"></div></div>
+      <div class="timerButtons"><button class="btn primary" onclick="startTimer('t4','tb4',600)">Iniciar</button><button class="btn secondary" onclick="pauseTimer('t4')">Pausar</button><button class="btn ghost" onclick="resetTimer('t4','tb4',600)">Reiniciar</button></div>
+    </div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Puesta en común →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Puesta en común 4</div><h2>¿Qué perspectivas distintas imaginaron?</h2></div>
+  <div class="discussGrid">
+    <div class="discussBox"><h3>Compartimos</h3><div class="prompt">¿Qué concepto trabajaron?</div><div class="prompt">¿Qué dos maneras de entenderlo imaginaron?</div><div class="prompt">¿Qué permitiría mirar cada una?</div></div>
+    <div class="discussBox"><h3>Problematizamos</h3><div class="prompt">¿Son realmente perspectivas diferentes o solo palabras distintas?</div><div class="prompt">¿Una perspectiva amplía o restringe el fenómeno?</div><div class="prompt">¿Cuál parece más útil para sus objetivos y por qué?</div></div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Modelado final →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Modelado 5</div><h2>Recién ahora construimos los apartados</h2><p>No convertimos automáticamente cada concepto en un título. Primero miramos qué preguntas necesitamos responder y cómo se relacionan.</p></div>
+  <div class="arch">
+    <div class="archBox"><h3>Concepto A</h3><p>Participación familiar: definición, formas, perspectivas.</p></div><div class="arr">→</div>
+    <div class="archBox"><h3>Concepto B</h3><p>Adaptación: características, dimensiones, factores.</p></div><div class="arr">→</div>
+    <div class="archBox"><h3>Relación A–B</h3><p>Cómo distintas perspectivas explican la relación entre ambos.</p></div>
+  </div>
+  <div class="tip"><b>Una posible arquitectura:</b> 1. Participación familiar en Educación Parvularia · 2. Procesos de adaptación al jardín infantil · 3. Participación familiar y adaptación.</div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Trabajo final · 15 min →</button></div>
+</section><section class="slide">
+  <div class="workSlide">
+    <div class="workMain">
+      <span class="eyebrow">Trabajo final</span>
+      <h2>Propongan la arquitectura de su marco teórico</h2>
+      <p>Usen todo lo que construyeron durante el bloque.</p>
+      <div class="workSteps">
+        <div class="workStep"><div class="n">1</div><span>Propongan entre <b>2 y 4 apartados</b>.</span></div>
+        <div class="workStep"><div class="n">2</div><span>Por cada apartado, indiquen qué concepto trabaja.</span></div>
+        <div class="workStep"><div class="n">3</div><span>Escriban qué pregunta teórica busca responder.</span></div>
+        <div class="workStep"><div class="n">4</div><span>Indiquen qué objetivo ayuda a desarrollar.</span></div>
+      </div>
+    </div>
+    <div class="timerPanel">
+      <div class="timerLabel">Tiempo de trabajo</div>
+      <div class="timerTime" id="t5">15:00</div>
+      <div class="timerBarTrack"><div class="timerBar" id="tb5"></div></div>
+      <div class="timerButtons"><button class="btn primary" onclick="startTimer('t5','tb5',900)">Iniciar</button><button class="btn secondary" onclick="pauseTimer('t5')">Pausar</button><button class="btn ghost" onclick="resetTimer('t5','tb5',900)">Reiniciar</button></div>
+    </div>
+  </div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Revisión final →</button></div>
+</section><section class="slide">
+  <div class="sectionHead"><div class="kicker">Revisión rápida entre grupos</div><h2>Antes de cerrar, probamos la coherencia</h2></div>
+  <div class="checkGrid">
+    <div class="check"><b>1. Conceptos</b><span>¿Los apartados trabajan conceptos realmente centrales?</span></div>
+    <div class="check"><b>2. Objetivos</b><span>¿Cada apartado ayuda a desarrollar al menos un objetivo?</span></div>
+    <div class="check"><b>3. Preguntas</b><span>¿Se entiende qué pregunta teórica responde cada apartado?</span></div>
+    <div class="check"><b>4. Relación</b><span>¿Los conceptos dialogan entre sí o aparecen aislados?</span></div>
+  </div>
+  <div class="bigQ" style="font-size:23px">Una sola recomendación al otro grupo: <b>“Lo que revisaríamos antes de empezar a escribir es…”</b></div>
+  <div class="footerNav"><button class="btn ghost" onclick="prev()">← Volver</button><button class="btn primary" onclick="next()">Cerrar taller →</button></div>
+</section><section class="slide">
+  <div class="hero" style="background:linear-gradient(135deg,#17202C,#344051)">
+    <span class="eyebrow"><i data-lucide="check-check"></i> Producto del bloque</span>
+    <h2>No salimos con un marco teórico escrito.<br>Salimos sabiendo qué tenemos que construir.</h2>
+    <p>Conceptos centrales · preguntas teóricas · estrategia de búsqueda · posibles perspectivas · arquitectura inicial de apartados.</p>
+  </div>
+</section>
+</main>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let idx=0;
+
+function show(n){
+  idx=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  const bar=document.getElementById('bar');
+  const counter=document.getElementById('counter');
+  if(bar) bar.style.width=((idx+1)/slides.length*100)+'%';
+  if(counter) counter.textContent=(idx+1)+' / '+slides.length;
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(window.lucide) lucide.createIcons();
+}
+function next(){show(idx+1)}
+function prev(){show(idx-1)}
+function toggle(id){document.getElementById(id)?.classList.toggle('show')}
+function pickPoll(btn){btn.classList.toggle('active')}
+
+/* QUIZZES DEL BLOQUE 1 */
+const quizzes={
+ quizA:[{
+   ctx:'Dos investigaciones utilizan la expresión “participación familiar”.',
+   q:'¿Por qué es importante saber cómo entiende cada una ese concepto?',
+   opts:[
+     'Porque necesitamos saber si ambas están observando dimensiones semejantes del fenómeno antes de comparar sus argumentos o resultados.',
+     'Porque toda investigación debe escoger una única definición del concepto y descartar las demás para evitar ambigüedades.',
+     'Porque definir el concepto ayuda a delimitar el tema, aunque después esa definición no modifica sustancialmente las preguntas de investigación.'
+   ],
+   correct:0,
+   exp:'La opción A es la más completa. Una definición conceptual no solo aclara una palabra: orienta qué dimensiones del fenómeno se vuelven visibles y permite saber si dos estudios realmente están hablando de algo comparable.'
+ }],
+ quizB:[{
+   ctx:'Objetivo: analizar la participación familiar durante el proceso de adaptación al jardín infantil.',
+   q:'Si cambia nuestra manera de entender “participación familiar”, ¿qué podría ocurrir con la investigación?',
+   opts:[
+     'Podrían cambiar las preguntas, las fuentes que consideramos pertinentes y la forma de interpretar lo encontrado, aunque el objetivo general mantenga una formulación parecida.',
+     'Cambiaría principalmente la forma de redactar el marco teórico, pero el resto de la investigación debería mantenerse igual porque el tema sigue siendo el mismo.',
+     'Solo tendría un efecto importante si la investigación fuera empírica; en una revisión bibliográfica, las definiciones cumplen sobre todo una función explicativa.'
+   ],
+   correct:0,
+   exp:'La opción A recoge mejor la relación entre teoría e investigación. Una conceptualización orienta qué buscamos, qué fuentes consideramos relevantes y cómo interpretamos los hallazgos.'
+ }],
+ quizC:[{
+   ctx:'Dos posibles maneras de construir un marco teórico sobre participación familiar y adaptación al jardín infantil.',
+   q:'¿Cuál se acerca más a un marco teórico que construye una posición?',
+   opts:[
+     'Definir por separado participación familiar y adaptación con autores reconocidos y, al final, agregar un apartado que resuma las semejanzas entre ambas definiciones.',
+     'Presentar distintas maneras de entender los conceptos, explicar sus diferencias, justificar qué perspectiva resulta más útil para el problema y articular desde ella la relación entre participación y adaptación.',
+     'Organizar estudios recientes sobre ambos temas, priorizando los hallazgos que aparecen con mayor frecuencia y dejando las diferencias conceptuales para la discusión final.'
+   ],
+   correct:1,
+   exp:'La opción B construye una posición teórica porque compara perspectivas, explicita diferencias y fundamenta desde qué mirada se comprenderá el problema.'
+ }]
+};
+
+const qstate={};
+function makeQuiz(id){qstate[id]={sel:null};renderQuiz(id)}
+function renderQuiz(id){
+ const q=quizzes[id][0],el=document.getElementById(id);
+ if(!el) return;
+ el.innerHTML=`<div class="quiz">
+ <div class="qcard">
+   <div class="qmeta"><span class="badge">Quiz</span><span class="qnum">1 pregunta</span></div>
+   <div class="context">${q.ctx}</div>
+   <div class="qtext">${q.q}</div>
+   <div class="opts">${q.opts.map((o,i)=>`<button class="opt" data-o="${i}"><span class="letter">${String.fromCharCode(65+i)}</span><span>${o}</span></button>`).join('')}</div>
+   <div class="actions"><button class="btn secondary" onclick="revealQ('${id}')">Revelar respuesta</button></div>
+   <div class="feedback" id="${id}_fb"></div>
+ </div>
+ <div class="sidecard"><h3>No respondan por intuición</h3><p>Primero expliquen por qué elegirían una alternativa. La respuesta sirve para cerrar la discusión, no para reemplazarla.</p></div>
+ </div>`;
+ el.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{
+   qstate[id].sel=+b.dataset.o;
+   el.querySelectorAll('[data-o]').forEach(x=>x.classList.remove('sel'));
+   b.classList.add('sel');
+ });
+}
+function revealQ(id){
+ const q=quizzes[id][0],el=document.getElementById(id),sel=qstate[id].sel;
+ el.querySelectorAll('[data-o]').forEach((b,i)=>{
+   b.classList.toggle('correct',i===q.correct);
+   b.classList.toggle('wrong',sel===i&&i!==q.correct);
+ });
+ const fb=document.getElementById(id+'_fb');
+ fb.className='feedback show '+(sel===q.correct?'good':'bad');
+ fb.innerHTML='<b>'+(sel===q.correct?'✓ Buena decisión':'Revisemos la decisión')+'</b><br>'+q.exp;
+}
+['quizA','quizB','quizC'].forEach(makeQuiz);
+
+/* TEMPORIZADORES DEL BLOQUE 2 */
+const timers={};
+function fmt(s){
+ const m=Math.floor(s/60),ss=s%60;
+ return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0');
+}
+function startTimer(id,barId,total){
+ if(timers[id]?.running)return;
+ if(!timers[id])timers[id]={remaining:total,total,barId,running:false};
+ const t=timers[id];
+ t.running=true;
+ t.int=setInterval(()=>{
+   t.remaining--;
+   updateTimer(id);
+   if(t.remaining<=0){
+     clearInterval(t.int);
+     t.running=false;
+     const el=document.getElementById(id);
+     if(el)el.textContent='¡Tiempo!';
+   }
+ },1000);
+}
+function pauseTimer(id){
+ const t=timers[id];
+ if(!t)return;
+ clearInterval(t.int);
+ t.running=false;
+}
+function resetTimer(id,barId,total){
+ pauseTimer(id);
+ timers[id]={remaining:total,total,barId,running:false};
+ updateTimer(id);
+}
+function updateTimer(id){
+ const t=timers[id];
+ if(!t)return;
+ const e=document.getElementById(id),b=document.getElementById(t.barId);
+ if(e)e.textContent=fmt(Math.max(0,t.remaining));
+ if(b)b.style.width=(Math.max(0,t.remaining)/t.total*100)+'%';
+}
+
+show(0);
+</script>
+
+</body>
+</html>
